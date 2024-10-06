@@ -115,8 +115,10 @@ class HtmlBuilder
     {
         $attributes['alt'] = $alt;
 
-        return $this->toHtmlString('<img src="' . $this->url->asset($url,
-            $secure) . '"' . $this->attributes($attributes) . '>');
+        return $this->toHtmlString('<img src="' . $this->url->asset(
+            $url,
+            $secure
+        ) . '"' . $this->attributes($attributes) . '>');
     }
 
     /**

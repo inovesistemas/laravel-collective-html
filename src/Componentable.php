@@ -56,7 +56,7 @@ trait Componentable
         $data = $this->getComponentData($component['signature'], $arguments);
 
         return new HtmlString(
-          $this->view->make($component['view'], $data)->render()
+            $this->view->make($component['view'], $data)->render()
         );
     }
 

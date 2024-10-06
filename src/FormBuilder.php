@@ -159,7 +159,8 @@ class FormBuilder
         // is used to spoof requests for this PUT, PATCH, etc. methods on forms.
         $attributes = array_merge(
 
-          $attributes, Arr::except($options, $this->reserved)
+            $attributes,
+            Arr::except($options, $this->reserved)
 
         );
 
@@ -570,7 +571,7 @@ class FormBuilder
         // the element. Then we'll create the final textarea elements HTML for us.
         $options = $this->html->attributes($options);
 
-        return $this->toHtmlString('<textarea' . $options . '>' . e($value, false). '</textarea>');
+        return $this->toHtmlString('<textarea' . $options . '>' . e($value, false) . '</textarea>');
     }
 
     /**
@@ -763,12 +764,12 @@ class FormBuilder
         foreach ($list as $value => $display) {
             $optionAttributes = $optionsAttributes[$value] ?? [];
             if (is_iterable($display)) {
-                $html[] = $this->optionGroup($display, $value, $selected, $attributes, $optionAttributes, $level+5);
+                $html[] = $this->optionGroup($display, $value, $selected, $attributes, $optionAttributes, $level + 5);
             } else {
-                $html[] = $this->option($space.$display, $value, $selected, $optionAttributes);
+                $html[] = $this->option($space . $display, $value, $selected, $optionAttributes);
             }
         }
-        return $this->toHtmlString('<optgroup label="' . e($space.$label, false) . '"' . $this->html->attributes($attributes) . '>' . implode('', $html) . '</optgroup>');
+        return $this->toHtmlString('<optgroup label="' . e($space . $label, false) . '"' . $this->html->attributes($attributes) . '>' . implode('', $html) . '</optgroup>');
     }
 
     /**
@@ -1300,7 +1301,8 @@ class FormBuilder
             $hasNullMiddleware = app("Illuminate\Contracts\Http\Kernel")
                 ->hasMiddleware(ConvertEmptyStringsToNull::class);
 
-            if ($hasNullMiddleware
+            if (
+                $hasNullMiddleware
                 && is_null($old)
                 && is_null($value)
                 && !is_null($this->view->shared('errors'))
